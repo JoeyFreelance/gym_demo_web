@@ -3,476 +3,1184 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Forge Fitness — London</title>
+<title>Oak & Bean — Specialty Coffee, London</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --black:#0A0A0A;--steel:#141414;--iron:#1E1E1E;--border:#2A2A2A;
-  --acid:#D4FF00;--white:#F5F5F5;--grey:#888888;--mid:#444;
-  --ease:cubic-bezier(0.16,1,0.3,1);
-}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:var(--black)}
-::-webkit-scrollbar-thumb{background:var(--acid)}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;border-bottom:1px solid transparent;transition:border-color 0.3s,background 0.3s}
-nav.scrolled{background:rgba(10,10,10,0.96);border-color:var(--border);backdrop-filter:blur(8px)}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.08em;color:var(--white);text-decoration:none}
-.nav-logo span{color:var(--acid)}
-.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center}
-.nav-links a{font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color 0.2s}
-.nav-links a:hover{color:var(--white)}
-.nav-cta{font-size:0.72rem !important;font-weight:600 !important;letter-spacing:0.12em !important;color:var(--black) !important;background:var(--acid);padding:0.6rem 1.4rem;text-decoration:none;transition:opacity 0.2s !important}
-.nav-cta:hover{opacity:0.85 !important;color:var(--black) !important}
+  :root {
+    --espresso: #1C1008;
+    --cream: #FAF6EF;
+    --oat: #EDE8DF;
+    --copper: #B5622A;
+    --copper-light: #D4845A;
+    --sage: #6B7C5E;
+    --charcoal: #2E2018;
+    --muted: #7A6E64;
+    --transition: cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-/* HERO */
-.hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:center;overflow:hidden;padding-top:5rem}
-.hero-bg{position:absolute;inset:0;background-color:#111;background-image:url('hero-bg.jpg');background-size:cover;background-position:center;transform:scale(1.06);transition:transform 0.1s linear}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,1) 0%,rgba(10,10,10,0.6) 40%,rgba(10,10,10,0.2) 100%)}
-.hero-overlay-side{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,0.7) 0%,transparent 60%)}
-.hero-content{position:relative;z-index:2;padding:0 3rem;width:100%}
-.hero-label{font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--acid);margin-bottom:1rem;opacity:0;transform:translateX(-20px);animation:slideIn 0.7s var(--ease) 0.2s forwards}
-.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,9vw,9rem);line-height:0.88;letter-spacing:0.02em;color:var(--white);margin-bottom:2rem;opacity:0;transform:translateX(-30px);animation:slideIn 0.9s var(--ease) 0.4s forwards}
-.hero-title .accent{color:var(--acid);display:block}
-.hero-bottom{position:absolute;bottom:5rem;left:3rem;right:3rem;display:flex;align-items:flex-end;justify-content:space-between;opacity:0;animation:fadeUp 0.8s var(--ease) 0.9s forwards}
-.hero-tagline{font-size:1rem;font-weight:300;color:rgba(245,245,245,0.6);line-height:1.7;max-width:380px}
-.hero-actions{display:flex;gap:1rem;align-items:center;flex-shrink:0}
-.btn-primary{display:inline-block;background:var(--acid);color:var(--black);font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;padding:1rem 2.5rem;transition:opacity 0.2s,transform 0.2s}
-.btn-primary:hover{opacity:0.88;transform:translateY(-2px)}
-.btn-ghost{display:inline-block;color:var(--grey);font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;padding:1rem 1.5rem;border:1px solid var(--border);transition:border-color 0.2s,color 0.2s}
-.btn-ghost:hover{border-color:var(--grey);color:var(--white)}
-.hero-ticker{position:absolute;bottom:0;left:0;right:0;background:var(--acid);overflow:hidden;padding:0.6rem 0;z-index:3}
-.ticker-track{display:flex;animation:ticker 22s linear infinite;white-space:nowrap;width:max-content}
-.ticker-item{font-family:'Bebas Neue',sans-serif;font-size:0.85rem;letter-spacing:0.14em;color:var(--black);padding:0 2.5rem}
-.ticker-sep{color:rgba(0,0,0,0.3);padding:0}
+  html { scroll-behavior: smooth; }
 
-/* SECTIONS */
-.section-inner{max-width:1200px;margin:0 auto;padding:6rem 3rem}
-.eyebrow{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--acid);margin-bottom:1rem;display:flex;align-items:center;gap:1rem}
-.eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--acid)}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,5.5rem);letter-spacing:0.04em;line-height:0.95;color:var(--white);margin-bottom:1.5rem}
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--espresso);
+    overflow-x: hidden;
+  }
 
-/* ABOUT */
-.about-section{background:var(--steel)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
-.about-p{font-size:0.95rem;font-weight:300;color:var(--grey);line-height:1.85;margin-bottom:1.25rem}
-.about-numbers{display:grid;grid-template-columns:repeat(3,1fr);margin-top:3rem;border-top:1px solid var(--border);border-left:1px solid var(--border)}
-.about-num{padding:1.5rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
-.num-val{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:0.05em;color:var(--acid);line-height:1}
-.num-label{font-size:0.68rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);margin-top:0.4rem}
-.about-image-block{position:relative}
-.about-image-block img{width:100%;height:500px;object-fit:cover;display:block;background:var(--iron);filter:grayscale(20%) contrast(1.05)}
-.about-img-ph{width:100%;height:500px;background:var(--iron);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.75rem}
-.about-image-tag{position:absolute;bottom:0;left:0;background:var(--acid);padding:1rem 1.5rem}
-.tag-line{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.06em;color:var(--black)}
-.tag-sub{font-size:0.65rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(0,0,0,0.55);margin-top:0.15rem}
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    transition: background 0.4s var(--transition), box-shadow 0.4s;
+  }
 
-/* MEMBERSHIP */
-.membership-section{background:var(--black)}
-.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:3.5rem}
-.plan-card{background:var(--steel);padding:2.5rem;transition:background 0.3s}
-.plan-card:hover{background:var(--iron)}
-.plan-card.featured{background:var(--acid)}
-.plan-card.featured:hover{background:#c5ef00}
-.plan-badge{font-size:0.6rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;background:var(--black);color:var(--acid);padding:0.3rem 0.8rem;display:inline-block;margin-bottom:1.5rem}
-.plan-card.featured .plan-badge{background:rgba(0,0,0,0.15);color:var(--black)}
-.plan-name{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:0.06em;color:var(--white);margin-bottom:0.5rem}
-.plan-card.featured .plan-name{color:var(--black)}
-.plan-price{font-family:'Bebas Neue',sans-serif;font-size:4rem;letter-spacing:0.02em;line-height:1;color:var(--acid);margin-bottom:0.25rem}
-.plan-card.featured .plan-price{color:var(--black)}
-.plan-per{font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-bottom:2rem}
-.plan-card.featured .plan-per{color:rgba(0,0,0,0.5)}
-.plan-desc{font-size:0.88rem;font-weight:300;color:var(--grey);line-height:1.7;margin-bottom:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
-.plan-card.featured .plan-desc{color:rgba(0,0,0,0.7);border-color:rgba(0,0,0,0.15)}
-.plan-cta{display:block;text-align:center;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;padding:0.85rem;border:1px solid var(--border);color:var(--white);transition:background 0.2s,border-color 0.2s,color 0.2s}
-.plan-cta:hover{background:var(--acid);border-color:var(--acid);color:var(--black)}
-.plan-card.featured .plan-cta{background:var(--black);border-color:var(--black);color:var(--acid)}
+  nav.scrolled {
+    background: rgba(250, 246, 239, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 1px 0 rgba(28, 16, 8, 0.08);
+  }
 
-/* TIMETABLE */
-.timetable-section{background:var(--steel)}
-.class-row{display:grid;grid-template-columns:2fr 1fr 1fr 120px;align-items:center;gap:2rem;padding:1.75rem 0;border-bottom:1px solid var(--border);transition:background 0.2s,padding 0.2s}
-.class-row:first-of-type{border-top:1px solid var(--border)}
-.class-row:hover{background:var(--iron);margin:0 -1.5rem;padding-left:1.5rem;padding-right:1.5rem}
-.class-name{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.06em;color:var(--white)}
-.class-days{font-size:0.75rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
-.class-time{font-family:'Space Mono',monospace;font-size:0.78rem;color:var(--grey)}
-.class-tag{font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:0.4rem 0.8rem;text-align:center}
-.tag-hiit{background:rgba(212,255,0,0.12);color:var(--acid)}
-.tag-strength{background:rgba(255,255,255,0.06);color:var(--grey)}
-.tag-recovery{background:rgba(255,255,255,0.04);color:#666}
-.tag-beginner{background:rgba(255,255,255,0.04);color:#666}
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--cream);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.3s;
+  }
 
-/* GALLERY */
-.gallery-section{background:var(--black)}
-.gallery-section .section-inner{padding-bottom:0}
-.gallery-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:240px 240px;gap:2px;margin-top:2rem}
-.g-item{overflow:hidden;position:relative}
-.g-item.wide{grid-column:span 2}
-.g-item.tall{grid-row:span 2}
-.g-item img{width:100%;height:100%;object-fit:cover;display:block;background:var(--iron);filter:grayscale(30%) contrast(1.1);transition:transform 0.6s var(--ease),filter 0.4s}
-.g-item:hover img{transform:scale(1.06);filter:grayscale(0%) contrast(1.05)}
-.g-ph{width:100%;height:100%;background:var(--iron);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px}
+  nav.scrolled .nav-logo { color: var(--espresso); }
 
-/* REVIEWS */
-.reviews-section{background:var(--steel)}
-.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:3rem}
-.review-card{background:var(--black);padding:2.5rem;transition:background 0.3s}
-.review-card:hover{background:var(--iron)}
-.review-num{font-family:'Bebas Neue',sans-serif;font-size:5rem;letter-spacing:-0.02em;line-height:0.8;color:var(--border);margin-bottom:1.5rem}
-.review-text{font-size:0.95rem;font-weight:300;color:rgba(245,245,245,0.7);line-height:1.8;margin-bottom:2rem}
-.review-footer{display:flex;align-items:center;justify-content:space-between;padding-top:1.5rem;border-top:1px solid var(--border)}
-.review-author{font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--white)}
-.review-stars{color:var(--acid);font-size:0.7rem;letter-spacing:0.1em}
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
 
-/* CONTACT */
-.contact-section{background:var(--black)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
-.contact-headline{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,7vw,7rem);letter-spacing:0.03em;line-height:0.9;color:var(--white);margin-bottom:3rem}
-.contact-headline span{color:var(--acid)}
-.info-block{margin-bottom:2rem}
-.info-label{font-size:0.62rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--acid);margin-bottom:0.5rem}
-.info-val{font-size:0.95rem;font-weight:300;color:var(--grey);line-height:1.6}
-.contact-form-wrap{border:1px solid var(--border);padding:2.5rem}
-.form-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.06em;color:var(--white);margin-bottom:0.4rem}
-.form-sub{font-size:0.8rem;font-weight:300;color:var(--mid);margin-bottom:2rem}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.form-group{display:flex;flex-direction:column;margin-bottom:1rem}
-.form-group label{font-size:0.62rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-bottom:0.4rem}
-.form-group input,.form-group textarea{background:var(--steel);border:1px solid var(--border);border-bottom:1px solid var(--mid);padding:0.75rem 1rem;color:var(--white);font-family:'Inter',sans-serif;font-size:0.88rem;font-weight:300;outline:none;resize:vertical;transition:border-color 0.2s}
-.form-group input:focus,.form-group textarea:focus{border-bottom-color:var(--acid)}
-.form-group input::placeholder,.form-group textarea::placeholder{color:var(--border)}
-.form-submit{width:100%;background:var(--acid);color:var(--black);font-family:'Inter',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;padding:1rem;border:none;cursor:pointer;margin-top:0.5rem;transition:opacity 0.2s,transform 0.2s}
-.form-submit:hover{opacity:0.88;transform:translateY(-1px)}
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(250, 246, 239, 0.85);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
 
-/* FOOTER */
-footer{background:var(--steel);border-top:1px solid var(--border);padding:2rem 3rem}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.1em;color:var(--grey)}
-.footer-logo span{color:var(--acid)}
-.footer-copy{font-size:0.72rem;color:var(--mid)}
-.footer-links{display:flex;gap:2rem}
-.footer-links a{font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color 0.2s}
-.footer-links a:hover{color:var(--acid)}
+  nav.scrolled .nav-links a { color: var(--muted); }
+  .nav-links a:hover { color: var(--copper) !important; }
 
-/* ANIMATIONS */
-@keyframes slideIn{to{opacity:1;transform:translateX(0)}}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.75s var(--ease),transform 0.75s var(--ease)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:0.08s}
-.reveal-delay-2{transition-delay:0.16s}
-.reveal-delay-3{transition-delay:0.24s}
+  .nav-cta {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cream) !important;
+    border: 1px solid rgba(250, 246, 239, 0.4);
+    padding: 0.55rem 1.4rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.3s !important;
+  }
 
-/* MOBILE */
-@media(max-width:900px){
-  nav{padding:1rem 1.5rem}
-  .nav-links{display:none}
-  .hero-content{padding:0 1.5rem}
-  .hero-title{font-size:clamp(4rem,16vw,6rem)}
-  .hero-bottom{left:1.5rem;right:1.5rem;bottom:4rem;flex-direction:column;align-items:flex-start;gap:1.5rem}
-  .section-inner{padding:4rem 1.5rem}
-  .about-grid,.contact-grid{grid-template-columns:1fr;gap:3rem}
-  .plans-grid,.reviews-grid{grid-template-columns:1fr}
-  .class-row{grid-template-columns:1fr 1fr;gap:1rem}
-  .class-time,.class-tag{display:none}
-  .gallery-grid{grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(4,160px)}
-  .g-item.wide,.g-item.tall{grid-column:span 1;grid-row:span 1}
-  .form-row{grid-template-columns:1fr}
-  footer{padding:1.5rem}
-  .footer-inner{flex-direction:column;gap:1rem;text-align:center}
-}
-@media(prefers-reduced-motion:reduce){
-  .ticker-track{animation:none}
-  .hero-bg,.reveal{transition:none}
-}
+  nav.scrolled .nav-cta {
+    color: var(--espresso) !important;
+    border-color: var(--espresso);
+  }
+
+  .nav-cta:hover {
+    background: var(--copper) !important;
+    border-color: var(--copper) !important;
+    color: var(--cream) !important;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-color: #2E1A0E;
+    background-image: url('hero-bg.jpg'); /* REPLACE: your hero background photo */
+    background-size: cover;
+    background-position: center 30%;
+    transform: scale(1.08);
+    transition: transform 0.1s linear;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(28, 16, 8, 0.72) 0%,
+      rgba(28, 16, 8, 0.45) 60%,
+      rgba(28, 16, 8, 0.2) 100%
+    );
+  }
+
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 3rem;
+    max-width: 700px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--copper-light);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s var(--transition) 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.9s var(--transition) 0.5s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: rgba(250, 246, 239, 0.75);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(250, 246, 239, 0.75);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 460px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.9s var(--transition) 0.7s forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.9s var(--transition) 0.9s forwards;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--copper);
+    color: var(--cream);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.85rem 2.2rem;
+    border-radius: 100px;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--copper-light);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    color: rgba(250, 246, 239, 0.8);
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    padding: 0.85rem 1.5rem;
+    transition: color 0.3s;
+  }
+
+  .btn-ghost:hover { color: var(--cream); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 1s var(--transition) 1.4s forwards;
+  }
+
+  .hero-scroll span {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(250, 246, 239, 0.5);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: rgba(250, 246, 239, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--copper-light);
+    animation: scrollDrop 1.8s ease-in-out infinite;
+  }
+
+  /* SECTION BASE */
+  section { position: relative; }
+
+  .section-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 7rem 3rem;
+  }
+
+  .section-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--espresso);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--muted); }
+
+  /* ABOUT */
+  .about { background: var(--cream); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+    opacity: 0.85;
+  }
+
+  .about-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(28, 16, 8, 0.1);
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--copper);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-top: 0.35rem;
+  }
+
+  .about-image {
+    position: relative;
+  }
+
+  .about-image img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    background: #2E1A0E;
+  }
+
+  .about-image-accent {
+    position: absolute;
+    bottom: -2rem;
+    left: -2rem;
+    width: 160px;
+    height: 160px;
+    background: var(--oat);
+    border-radius: 4px;
+    z-index: -1;
+  }
+
+  /* MENU */
+  .menu-section { background: var(--espresso); }
+
+  .menu-section .section-title { color: var(--cream); }
+  .menu-section .section-eyebrow { color: var(--copper-light); }
+
+  .menu-section .section-inner { padding-bottom: 5rem; }
+
+  .menu-intro {
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(250, 246, 239, 0.6);
+    max-width: 500px;
+    line-height: 1.7;
+    margin-bottom: 4rem;
+  }
+
+  .menu-categories {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .menu-tab {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.5rem;
+    border-radius: 100px;
+    border: 1px solid rgba(250, 246, 239, 0.2);
+    color: rgba(250, 246, 239, 0.5);
+    background: none;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .menu-tab.active, .menu-tab:hover {
+    background: var(--copper);
+    border-color: var(--copper);
+    color: var(--cream);
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5px;
+  }
+
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid rgba(250, 246, 239, 0.07);
+    transition: opacity 0.3s;
+  }
+
+  .menu-item:last-child { border-bottom: none; }
+
+  .item-name {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--cream);
+    letter-spacing: 0.01em;
+  }
+
+  .item-desc {
+    font-size: 0.78rem;
+    color: rgba(250, 246, 239, 0.4);
+    margin-top: 0.25rem;
+  }
+
+  .item-price {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.88rem;
+    color: var(--copper-light);
+    white-space: nowrap;
+    margin-left: 1rem;
+  }
+
+  /* GALLERY */
+  .gallery-section { background: var(--oat); overflow: hidden; }
+
+  .gallery-strip {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+    margin-top: 3rem;
+  }
+
+  .gallery-strip img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    background: #2E1A0E;
+    transition: transform 0.6s var(--transition), filter 0.4s;
+    filter: saturate(0.85);
+  }
+
+  .gallery-strip img:hover {
+    transform: scale(1.04);
+    filter: saturate(1.1);
+    z-index: 1;
+    position: relative;
+  }
+
+  .gallery-strip .tall {
+    grid-row: span 1;
+  }
+
+  /* REVIEWS */
+  .reviews-section { background: var(--cream); }
+
+  .reviews-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3.5rem;
+  }
+
+  .reviews-rating {
+    text-align: right;
+  }
+
+  .rating-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: var(--espresso);
+    line-height: 1;
+  }
+
+  .rating-stars { color: var(--copper); font-size: 1rem; margin: 0.25rem 0; letter-spacing: 0.1em; }
+  .rating-count { font-size: 0.8rem; color: var(--muted); }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .review-card {
+    background: var(--oat);
+    border-radius: 6px;
+    padding: 2rem;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(28, 16, 8, 0.08);
+  }
+
+  .review-quote {
+    font-size: 2rem;
+    color: var(--copper);
+    line-height: 1;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .review-text {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .review-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .review-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--copper);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .review-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--espresso);
+  }
+
+  .review-stars { font-size: 0.7rem; color: var(--copper); letter-spacing: 0.05em; }
+
+  /* VISIT */
+  .visit-section {
+    background: var(--espresso);
+    overflow: hidden;
+  }
+
+  .visit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 7rem 3rem;
+  }
+
+  .visit-section .section-title { color: var(--cream); }
+  .visit-section .section-eyebrow { color: var(--copper-light); }
+
+  .visit-info { display: flex; flex-direction: column; gap: 2rem; }
+
+  .info-row {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .info-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(250, 246, 239, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .info-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--copper-light);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .info-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(250, 246, 239, 0.4);
+    margin-bottom: 0.4rem;
+  }
+
+  .info-value {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: rgba(250, 246, 239, 0.85);
+    line-height: 1.6;
+  }
+
+  .contact-form {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(250, 246, 239, 0.1);
+    border-radius: 8px;
+    padding: 2.5rem;
+  }
+
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-sub {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: rgba(250, 246, 239, 0.45);
+    margin-bottom: 2rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2rem;
+  }
+
+  .form-group label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(250, 246, 239, 0.4);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input, .form-group textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(250, 246, 239, 0.12);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+    resize: vertical;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: rgba(250, 246, 239, 0.25);
+  }
+
+  .form-group input:focus, .form-group textarea:focus {
+    border-color: var(--copper);
+  }
+
+  .form-submit {
+    width: 100%;
+    background: var(--copper);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .form-submit:hover {
+    background: var(--copper-light);
+    transform: translateY(-2px);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    padding: 2.5rem 3rem;
+  }
+
+  .footer-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: rgba(250, 246, 239, 0.5);
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(250, 246, 239, 0.3);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-links a {
+    font-size: 0.78rem;
+    color: rgba(250, 246, 239, 0.35);
+    text-decoration: none;
+    transition: color 0.3s;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-links a:hover { color: var(--copper-light); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollDrop {
+    0% { top: -100%; }
+    100% { top: 100%; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero-content { padding: 0 1.5rem; }
+    .section-inner { padding: 5rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-image { order: -1; }
+    .about-image img { height: 340px; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .gallery-strip { grid-template-columns: repeat(3, 1fr); }
+    .gallery-strip img { height: 180px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .reviews-header { flex-direction: column; gap: 1rem; }
+    .reviews-rating { text-align: left; }
+    .visit-grid { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 2rem 1.5rem; }
+    .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg, .scroll-line::after { animation: none; }
+    .gallery-strip img { transition: none; }
+  }
 </style>
 </head>
 <body>
 
+<!-- NAVIGATION -->
 <nav id="nav">
-  <a href="#" class="nav-logo">FORGE<span>.</span></a>
+  <a href="#" class="nav-logo">Oak & Bean</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#membership">Membership</a></li>
-    <li><a href="#timetable">Classes</a></li>
+    <li><a href="#menu">Menu</a></li>
     <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#contact" class="nav-cta">Join Now</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#visit" class="nav-cta">Visit Us</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-overlay"></div>
-  <div class="hero-overlay-side"></div>
+  <div class="hero-grain"></div>
   <div class="hero-content">
-    <p class="hero-label">Est. 2019 · London · 24/7</p>
-    <h1 class="hero-title">BUILD<br>WHAT<br><span class="accent">BREAKS</span><br>YOU</h1>
-    <div class="hero-bottom">
-      
-      <div class="hero-actions">
-        <a href="#membership" class="btn-primary">Start Today</a>
-        <a href="#timetable" class="btn-ghost">View Classes</a>
-      </div>
+    <p class="hero-eyebrow">Est. 2018 · London</p>
+    <h1 class="hero-title">Where every cup<br><em>tells a story</em></h1>
+    <p class="hero-sub">Specialty coffee, artisan pastries, and a room that breathes. Come as you are — stay as long as you need.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-primary">Explore the Menu</a>
+      <a href="#visit" class="btn-ghost">Find Us →</a>
     </div>
   </div>
-  <div class="hero-ticker">
-    <div class="ticker-track">
-      <span class="ticker-item">STRENGTH TRAINING</span><span class="ticker-sep">—</span>
-      <span class="ticker-item">HIIT CLASSES</span><span class="ticker-sep">—</span>
-      <span class="ticker-item">PERSONAL COACHING</span><span class="ticker-sep">—</span>
-      <span class="ticker-item">24/7 ACCESS</span><span class="ticker-sep">—</span>
-      <span class="ticker-item">NUTRITION GUIDANCE</span><span class="ticker-sep">—</span>
-      <span class="ticker-item">FORGE FITNESS</span><span class="ticker-sep">—</span>
-      <span class="ticker-item">STRENGTH TRAINING</span><span class="ticker-sep">—</span>
-      <span class="ticker-item">HIIT CLASSES</span><span class="ticker-sep">—</span>
-      <span class="ticker-item">PERSONAL COACHING</span><span class="ticker-sep">—</span>
-      <span class="ticker-item">24/7 ACCESS</span><span class="ticker-sep">—</span>
-      <span class="ticker-item">NUTRITION GUIDANCE</span><span class="ticker-sep">—</span>
-      <span class="ticker-item">FORGE FITNESS</span><span class="ticker-sep">—</span>
-    </div>
+  <!-- Hero placeholder: hidden once hero-bg.jpg loads -->
+  <div id="heroPh" style="position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;pointer-events:none">
+    <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="rgba(181,98,42,0.2)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    <span style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;color:rgba(181,98,42,0.3)">hero&#8209;bg.jpg</span>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
   </div>
 </section>
 
-<section class="about-section" id="about">
+<!-- ABOUT -->
+<section class="about" id="about">
   <div class="section-inner">
     <div class="about-grid">
-      <div>
-        <p class="eyebrow reveal">Who We Are</p>
-        <h2 class="section-title reveal reveal-delay-1">BUILT FOR<br>RESULTS.</h2>
-        <p class="about-p reveal reveal-delay-2">Established in 2019, Forge Fitness was built on one principle: no excuses, only outcomes. We created a high-performance training environment for people of all levels — from first-timers to competitive athletes.</p>
-        <p class="about-p reveal reveal-delay-3">From strength and conditioning to personal coaching and group classes, we focus on long-term results. The equipment is serious. The coaches are serious. The only thing we ask is that you are too.</p>
-        <div class="about-numbers reveal reveal-delay-3">
-          <div class="about-num"><div class="num-val">6+</div><div class="num-label">Years Open</div></div>
-          <div class="about-num"><div class="num-val">800+</div><div class="num-label">Members</div></div>
-          <div class="about-num"><div class="num-val">12</div><div class="num-label">Coaches</div></div>
+      <div class="about-text">
+        <p class="section-eyebrow reveal">Our Story</p>
+        <h2 class="section-title reveal reveal-delay-1">Rooted in craft,<br><em>grown with care</em></h2>
+        <p class="reveal reveal-delay-2">Oak & Bean was founded on one belief: a great cup of coffee should do more than taste good. It should slow you down. Since opening our doors on High Street in 2018, we've sourced our beans from small family farms across Ethiopia, Colombia, and Guatemala.</p>
+        <p class="reveal reveal-delay-3">Every drink is crafted by hand, every pastry is baked fresh each morning, and the music is always just low enough to let you think.</p>
+        <div class="about-stats reveal reveal-delay-4">
+          <div>
+            <div class="stat-num">7+</div>
+            <div class="stat-label">Years serving</div>
+          </div>
+          <div>
+            <div class="stat-num">12</div>
+            <div class="stat-label">Origin farms</div>
+          </div>
+          <div>
+            <div class="stat-num">500+</div>
+            <div class="stat-label">Daily guests</div>
+          </div>
         </div>
       </div>
-      <div class="about-image-block reveal reveal-delay-2">
-        <!-- REPLACE with your image: rename your file to about.jpg and place next to index.html -->
-        <img src="about.jpg" alt="Inside Forge Fitness" id="aboutImg" onerror="document.getElementById('aboutImg').style.display='none';document.getElementById('aboutPh').style.display='flex'">
-        <div class="about-img-ph" id="aboutPh" style="display:none">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2A2A2A" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.1em;color:#2A2A2A">about.jpg</span>
+      <div class="about-image reveal reveal-delay-2" style="position:relative">
+        <!-- REPLACE: place about.jpg next to index.html -->
+        <div id="aboutPh" style="width:100%;height:520px;background:#2E1A0E;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#B5622A" stroke-width="1.2" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span style="font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(181,98,42,0.45)">about.jpg</span>
         </div>
-        <div class="about-image-tag">
-          <div class="tag-line">No excuses.</div>
-          <div class="tag-sub">Only results</div>
-        </div>
+        <img src="about.jpg" alt="Barista crafting coffee at Oak & Bean" id="aboutImg" style="display:none;width:100%;height:520px;object-fit:cover;border-radius:4px;background:#2E1A0E" onload="this.style.display='block';document.getElementById('aboutPh').style.display='none'">
+        <div class="about-image-accent"></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="membership-section" id="membership">
+<!-- MENU -->
+<section class="menu-section" id="menu">
   <div class="section-inner">
-    <p class="eyebrow reveal">Membership</p>
-    <h2 class="section-title reveal reveal-delay-1">PICK YOUR<br>LEVEL.</h2>
-    <div class="plans-grid">
-      <div class="plan-card reveal">
-        <div class="plan-name">Basic</div>
-        <div class="plan-price">£25</div>
-        <div class="plan-per">Per month</div>
-        <div class="plan-desc">Full gym access during staffed hours. Access to all cardio and strength equipment. Perfect to get started.</div>
-        <a href="#contact" class="plan-cta">Get Started</a>
+    <p class="section-eyebrow reveal">Our Menu</p>
+    <h2 class="section-title reveal reveal-delay-1">Crafted with intention,<br><em>served with warmth</em></h2>
+    <p class="menu-intro reveal reveal-delay-2">Ethically sourced, carefully roasted, precisely poured. Everything on our menu earns its place.</p>
+
+    <div class="menu-categories reveal reveal-delay-3">
+      <button class="menu-tab active" onclick="filterMenu('hot')">Hot Drinks</button>
+      <button class="menu-tab" onclick="filterMenu('cold')">Cold Drinks</button>
+      <button class="menu-tab" onclick="filterMenu('pastries')">Pastries</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid">
+      <!-- hot -->
+      <div class="menu-item" data-cat="hot">
+        <div><div class="item-name">Espresso</div><div class="item-desc">Double shot, single origin</div></div>
+        <div class="item-price">£2.80</div>
       </div>
-      <div class="plan-card featured reveal reveal-delay-2">
-        <div class="plan-badge">Most Popular</div>
-        <div class="plan-name">Premium</div>
-        <div class="plan-price">£40</div>
-        <div class="plan-per">Per month</div>
-        <div class="plan-desc">24/7 gym access plus unlimited fitness classes and sauna access. The full Forge experience.</div>
-        <a href="#contact" class="plan-cta">Get Started</a>
+      <div class="menu-item" data-cat="hot">
+        <div><div class="item-name">Flat White</div><div class="item-desc">Silky microfoam, full-bodied</div></div>
+        <div class="item-price">£3.20</div>
       </div>
-      <div class="plan-card reveal reveal-delay-3">
-        <div class="plan-badge" style="background:var(--acid);color:var(--black)">Elite</div>
-        <div class="plan-name">Coaching</div>
-        <div class="plan-price">£80</div>
-        <div class="plan-per">Per month</div>
-        <div class="plan-desc">Personalised coaching plans, nutrition guidance, and weekly check-ins. For those who want the edge.</div>
-        <a href="#contact" class="plan-cta">Get Started</a>
+      <div class="menu-item" data-cat="hot">
+        <div><div class="item-name">Cappuccino</div><div class="item-desc">Classic Italian ratio</div></div>
+        <div class="item-price">£3.40</div>
+      </div>
+      <div class="menu-item" data-cat="hot">
+        <div><div class="item-name">Latte</div><div class="item-desc">Steamed oat or whole milk</div></div>
+        <div class="item-price">£3.50</div>
+      </div>
+      <!-- cold -->
+      <div class="menu-item" data-cat="cold" style="display:none">
+        <div><div class="item-name">Iced Latte</div><div class="item-desc">Over ice, lightly sweetened</div></div>
+        <div class="item-price">£3.80</div>
+      </div>
+      <div class="menu-item" data-cat="cold" style="display:none">
+        <div><div class="item-name">Cold Brew</div><div class="item-desc">18-hour steep, smooth finish</div></div>
+        <div class="item-price">£3.90</div>
+      </div>
+      <div class="menu-item" data-cat="cold" style="display:none">
+        <div><div class="item-name">Iced Mocha</div><div class="item-desc">Dark chocolate, cold-pressed</div></div>
+        <div class="item-price">£4.20</div>
+      </div>
+      <!-- pastries -->
+      <div class="menu-item" data-cat="pastries" style="display:none">
+        <div><div class="item-name">Butter Croissant</div><div class="item-desc">French-style, baked in-house</div></div>
+        <div class="item-price">£2.80</div>
+      </div>
+      <div class="menu-item" data-cat="pastries" style="display:none">
+        <div><div class="item-name">Blueberry Muffin</div><div class="item-desc">Wild blueberry, lemon zest</div></div>
+        <div class="item-price">£2.90</div>
+      </div>
+      <div class="menu-item" data-cat="pastries" style="display:none">
+        <div><div class="item-name">Dark Chocolate Brownie</div><div class="item-desc">Fudgy, 70% cacao</div></div>
+        <div class="item-price">£3.10</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="timetable-section" id="timetable">
-  <div class="section-inner">
-    <p class="eyebrow reveal">Classes</p>
-    <h2 class="section-title reveal reveal-delay-1">THE WEEK<br>AHEAD.</h2>
-    <div style="margin-top:3rem">
-      <div class="class-row reveal">
-        <div class="class-name">HIIT Training</div>
-        <div class="class-days">Mon / Wed / Fri</div>
-        <div class="class-time">18:00 – 19:00</div>
-        <div class="class-tag tag-hiit">High Intensity</div>
-      </div>
-      <div class="class-row reveal reveal-delay-1">
-        <div class="class-name">Strength & Conditioning</div>
-        <div class="class-days">Tue / Thu</div>
-        <div class="class-time">19:00 – 20:00</div>
-        <div class="class-tag tag-strength">Strength</div>
-      </div>
-      <div class="class-row reveal reveal-delay-2">
-        <div class="class-name">Yoga Recovery</div>
-        <div class="class-days">Saturday</div>
-        <div class="class-time">10:00 – 11:00</div>
-        <div class="class-tag tag-recovery">Recovery</div>
-      </div>
-      <div class="class-row reveal reveal-delay-3">
-        <div class="class-name">Beginner Bootcamp</div>
-        <div class="class-days">Sunday</div>
-        <div class="class-time">09:00 – 10:00</div>
-        <div class="class-tag tag-beginner">All Levels</div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- GALLERY -->
 <section class="gallery-section" id="gallery">
-  <div class="section-inner">
-    <p class="eyebrow reveal">Inside Forge</p>
-    <h2 class="section-title reveal reveal-delay-1">THE GYM<br>FLOOR.</h2>
+  <div class="section-inner" style="padding-bottom: 2rem;">
+    <p class="section-eyebrow reveal">Gallery</p>
+    <h2 class="section-title reveal reveal-delay-1">A space <em>worth returning to</em></h2>
   </div>
-  <!-- REPLACE each src — place your files next to index.html named gallery-1.jpg through gallery-6.jpg -->
-  <div class="gallery-grid reveal">
-    <div class="g-item wide">
-      <img src="gallery-1.jpg" alt="Gym floor" onerror="this.parentNode.replaceChild(makePh('gallery-1.jpg','GYM FLOOR'),this)">
+  <div class="gallery-strip reveal">
+    <!-- REPLACE each src with your image file, e.g. src="gallery-1.jpg" -->
+    <!-- REPLACE: place gallery-1.jpg next to index.html -->
+    <div id="ph-gallery-1.jpg" style="width:100%;height:280px;background:#2E1A0E;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;flex-shrink:0">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#B5622A" stroke-width="1.2" opacity="0.35"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(181,98,42,0.4)">Interior</span>
+      <span style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;color:rgba(181,98,42,0.2)">gallery-1.jpg</span>
     </div>
-    <div class="g-item">
-      <img src="gallery-2.jpg" alt="Weights" onerror="this.parentNode.replaceChild(makePh('gallery-2.jpg','WEIGHTS'),this)">
+    <img src="gallery-1.jpg" alt="Oak & Bean interior" style="display:none;width:100%;height:280px;object-fit:cover;flex-shrink:0;filter:saturate(0.85);transition:transform 0.6s,filter 0.4s" onload="this.style.display='block';document.getElementById('ph-gallery-1.jpg').style.display='none'">
+    <!-- REPLACE: place gallery-2.jpg next to index.html -->
+    <div id="ph-gallery-2.jpg" style="width:100%;height:280px;background:#2E1A0E;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;flex-shrink:0">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#B5622A" stroke-width="1.2" opacity="0.35"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(181,98,42,0.4)">Latte Art</span>
+      <span style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;color:rgba(181,98,42,0.2)">gallery-2.jpg</span>
     </div>
-    <div class="g-item">
-      <img src="gallery-3.jpg" alt="Cardio" onerror="this.parentNode.replaceChild(makePh('gallery-3.jpg','CARDIO'),this)">
+    <img src="gallery-2.jpg" alt="Latte art" style="display:none;width:100%;height:280px;object-fit:cover;flex-shrink:0;filter:saturate(0.85);transition:transform 0.6s,filter 0.4s" onload="this.style.display='block';document.getElementById('ph-gallery-2.jpg').style.display='none'">
+    <!-- REPLACE: place gallery-3.jpg next to index.html -->
+    <div id="ph-gallery-3.jpg" style="width:100%;height:280px;background:#2E1A0E;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;flex-shrink:0">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#B5622A" stroke-width="1.2" opacity="0.35"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(181,98,42,0.4)">Seating</span>
+      <span style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;color:rgba(181,98,42,0.2)">gallery-3.jpg</span>
     </div>
-    <div class="g-item tall">
-      <img src="gallery-4.jpg" alt="Training" onerror="this.parentNode.replaceChild(makePh('gallery-4.jpg','TRAINING'),this)">
+    <img src="gallery-3.jpg" alt="Cosy corner seating" style="display:none;width:100%;height:280px;object-fit:cover;flex-shrink:0;filter:saturate(0.85);transition:transform 0.6s,filter 0.4s" onload="this.style.display='block';document.getElementById('ph-gallery-3.jpg').style.display='none'">
+    <!-- REPLACE: place gallery-4.jpg next to index.html -->
+    <div id="ph-gallery-4.jpg" style="width:100%;height:280px;background:#2E1A0E;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;flex-shrink:0">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#B5622A" stroke-width="1.2" opacity="0.35"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(181,98,42,0.4)">Espresso</span>
+      <span style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;color:rgba(181,98,42,0.2)">gallery-4.jpg</span>
     </div>
-    <div class="g-item wide">
-      <img src="gallery-5.jpg" alt="Classes" onerror="this.parentNode.replaceChild(makePh('gallery-5.jpg','CLASSES'),this)">
+    <img src="gallery-4.jpg" alt="Espresso pour" style="display:none;width:100%;height:280px;object-fit:cover;flex-shrink:0;filter:saturate(0.85);transition:transform 0.6s,filter 0.4s" onload="this.style.display='block';document.getElementById('ph-gallery-4.jpg').style.display='none'">
+    <!-- REPLACE: place gallery-5.jpg next to index.html -->
+    <div id="ph-gallery-5.jpg" style="width:100%;height:280px;background:#2E1A0E;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;flex-shrink:0">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#B5622A" stroke-width="1.2" opacity="0.35"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(181,98,42,0.4)">Beans</span>
+      <span style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;color:rgba(181,98,42,0.2)">gallery-5.jpg</span>
     </div>
-    <div class="g-item">
-      <img src="gallery-6.jpg" alt="Equipment" onerror="this.parentNode.replaceChild(makePh('gallery-6.jpg','EQUIPMENT'),this)">
+    <img src="gallery-5.jpg" alt="Coffee beans" style="display:none;width:100%;height:280px;object-fit:cover;flex-shrink:0;filter:saturate(0.85);transition:transform 0.6s,filter 0.4s" onload="this.style.display='block';document.getElementById('ph-gallery-5.jpg').style.display='none'">
+    <!-- REPLACE: place gallery-6.jpg next to index.html -->
+    <div id="ph-gallery-6.jpg" style="width:100%;height:280px;background:#2E1A0E;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;flex-shrink:0">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#B5622A" stroke-width="1.2" opacity="0.35"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(181,98,42,0.4)">Barista</span>
+      <span style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;color:rgba(181,98,42,0.2)">gallery-6.jpg</span>
     </div>
+    <img src="gallery-6.jpg" alt="Barista at work" style="display:none;width:100%;height:280px;object-fit:cover;flex-shrink:0;filter:saturate(0.85);transition:transform 0.6s,filter 0.4s" onload="this.style.display='block';document.getElementById('ph-gallery-6.jpg').style.display='none'">
   </div>
-  <div style="height:4rem"></div>
+  <div style="height: 4rem;"></div>
 </section>
 
+<!-- REVIEWS -->
 <section class="reviews-section" id="reviews">
   <div class="section-inner">
-    <p class="eyebrow reveal">Members Say</p>
-    <h2 class="section-title reveal reveal-delay-1">REAL<br>RESULTS.</h2>
+    <div class="reviews-header">
+      <div>
+        <p class="section-eyebrow reveal">What Guests Say</p>
+        <h2 class="section-title reveal reveal-delay-1">Trusted by<br><em>the neighbourhood</em></h2>
+      </div>
+      <div class="reviews-rating reveal reveal-delay-2">
+        <div class="rating-num">5.0</div>
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-count">Based on 340+ reviews</div>
+      </div>
+    </div>
     <div class="reviews-grid">
       <div class="review-card reveal">
-        <div class="review-num">01</div>
-        <p class="review-text">"Best gym atmosphere I've ever trained in. The equipment is top tier and the staff actually know what they're talking about."</p>
-        <div class="review-footer">
-          <div class="review-author">Chris M.</div>
-          <div class="review-stars">★★★★★</div>
+        <div class="review-quote">"</div>
+        <p class="review-text">Best café in town. The coffee is always perfect — and the flat white here has genuinely ruined every other café for me.</p>
+        <div class="review-author">
+          <div class="review-avatar">ER</div>
+          <div>
+            <div class="review-name">Emily R.</div>
+            <div class="review-stars">★★★★★</div>
+          </div>
         </div>
       </div>
       <div class="review-card reveal reveal-delay-2">
-        <div class="review-num">02</div>
-        <p class="review-text">"The classes are brilliant and the trainers genuinely care whether you improve. Nothing else like it in London."</p>
-        <div class="review-footer">
-          <div class="review-author">Sarah T.</div>
-          <div class="review-stars">★★★★★</div>
+        <div class="review-quote">"</div>
+        <p class="review-text">I come here every morning to work. The atmosphere is calm, the Wi-Fi is reliable, and nobody makes you feel bad for staying a few hours.</p>
+        <div class="review-author">
+          <div class="review-avatar">JT</div>
+          <div>
+            <div class="review-name">James T.</div>
+            <div class="review-stars">★★★★★</div>
+          </div>
         </div>
       </div>
       <div class="review-card reveal reveal-delay-3">
-        <div class="review-num">03</div>
-        <p class="review-text">"Clean, modern, and always motivating. I've been a member for three years and I've never once thought about leaving."</p>
-        <div class="review-footer">
-          <div class="review-author">Jake R.</div>
-          <div class="review-stars">★★★★★</div>
+        <div class="review-quote">"</div>
+        <p class="review-text">The staff are genuinely lovely and the pastries are fresh every single day. The chocolate brownie alone is worth the trip.</p>
+        <div class="review-author">
+          <div class="review-avatar">SK</div>
+          <div>
+            <div class="review-name">Sarah K.</div>
+            <div class="review-stars">★★★★★</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="contact-section" id="contact">
-  <div class="section-inner">
-    <div class="contact-grid">
-      <div>
-        <h2 class="contact-headline reveal">READY<br>TO<br><span>FORGE</span><br>IT?</h2>
-        <div class="info-block reveal reveal-delay-1">
-          <div class="info-label">Address</div>
-          <div class="info-val">82 Kingsway Avenue<br>London, WC2B 6NH</div>
+<!-- VISIT -->
+<section class="visit-section" id="visit">
+  <div class="visit-grid">
+    <div>
+      <p class="section-eyebrow reveal">Find Us</p>
+      <h2 class="section-title reveal reveal-delay-1">We're here,<br><em>whenever you are</em></h2>
+      <div class="visit-info" style="margin-top: 2.5rem;">
+        <div class="info-row reveal reveal-delay-2">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div>
+            <div class="info-label">Address</div>
+            <div class="info-value">123 High Street<br>London, EC1A 1BB</div>
+          </div>
         </div>
-        <div class="info-block reveal reveal-delay-2">
-          <div class="info-label">Hours</div>
-          <div class="info-val">24/7 for Premium Members<br>Mon–Sat 6am–10pm (Basic)</div>
+        <div class="info-row reveal reveal-delay-3">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="info-label">Opening Hours</div>
+            <div class="info-value">Monday – Friday: 7:30am – 6:00pm<br>Saturday: 8:00am – 5:00pm<br>Sunday: Closed</div>
+          </div>
         </div>
-        <div class="info-block reveal reveal-delay-3">
-          <div class="info-label">Phone</div>
-          <div class="info-val">020 7946 5412</div>
+        <div class="info-row reveal reveal-delay-4">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.35 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="info-label">Phone</div>
+            <div class="info-value">020 7946 0823</div>
+          </div>
         </div>
       </div>
-      <div class="contact-form-wrap reveal reveal-delay-2">
-        <p class="form-title">GET IN TOUCH</p>
-        <p class="form-sub">Memberships, tours, or questions — we reply within 24 hours.</p>
-        <div class="form-row">
-          <div class="form-group"><label>First name</label><input type="text" placeholder="Alex"></div>
-          <div class="form-group"><label>Last name</label><input type="text" placeholder="Turner"></div>
+    </div>
+
+    <div class="contact-form reveal reveal-delay-2">
+      <p class="form-title">Send us a message</p>
+      <p class="form-sub">For bookings, events, or just to say hello.</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First name</label>
+          <input type="text" placeholder="Jane">
         </div>
-        <div class="form-group"><label>Email</label><input type="email" placeholder="alex@example.com"></div>
-        <div class="form-group"><label>Message</label><textarea rows="4" placeholder="I'd like to know more about..."></textarea></div>
-        <button class="form-submit" onclick="handleSubmit(this)">Send Message →</button>
+        <div class="form-group">
+          <label>Last name</label>
+          <input type="text" placeholder="Smith">
+        </div>
       </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="jane@example.com">
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea rows="4" placeholder="What's on your mind?"></textarea>
+      </div>
+      <button class="form-submit" onclick="handleSubmit(this)">Send Message</button>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <span class="footer-logo">FORGE<span>.</span></span>
+    <span class="footer-logo">Oak & Bean</span>
     <div class="footer-links">
       <a href="#about">About</a>
-      <a href="#membership">Membership</a>
-      <a href="#contact">Contact</a>
+      <a href="#menu">Menu</a>
+      <a href="#visit">Contact</a>
     </div>
-    <span class="footer-copy">© 2026 Forge Fitness</span>
+    <span class="footer-copy">© 2026 Oak & Bean Café</span>
   </div>
 </footer>
 
 <script>
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+  // NAV scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
 
-const heroBg = document.getElementById('heroBg');
-window.addEventListener('scroll', () => {
-  heroBg.style.transform = `scale(1.06) translateY(${window.scrollY * 0.25}px)`;
-}, {passive:true});
+  // Parallax hero
+  const heroBg = document.getElementById('heroBg');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    heroBg.style.transform = `scale(1.08) translateY(${y * 0.3}px)`;
+  }, { passive: true });
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)} });
-}, {threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
 
-function makePh(filename, label) {
-  const d = document.createElement('div');
-  d.className = 'g-ph';
-  d.style.cssText = 'width:100%;height:100%;background:#1E1E1E;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px';
-  d.innerHTML = `
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2A2A2A" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-    <span style="font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:0.12em;color:#2A2A2A">${label}</span>
-    <span style="font-family:'Space Mono',monospace;font-size:0.6rem;color:#222">${filename}</span>`;
-  return d;
-}
+  // Menu filter
+  function filterMenu(cat) {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.style.display = item.dataset.cat === cat ? 'flex' : 'none';
+    });
+  }
 
-function handleSubmit(btn) {
-  btn.textContent = 'Message Sent ✓';
-  btn.style.background = '#3a5a3a';
-  btn.disabled = true;
-}
+  // Hide hero placeholder when bg image loads
+  const heroPh = document.getElementById('heroPh');
+  if (heroPh) {
+    const t = new Image();
+    t.onload = () => { heroPh.style.display = 'none'; };
+    t.src = 'hero-bg.jpg';
+  }
+
+  // Form submit
+  function handleSubmit(btn) {
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#6B7C5E';
+    btn.disabled = true;
+  }
 </script>
 </body>
 </html>
